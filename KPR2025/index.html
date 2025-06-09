@@ -1,35 +1,112 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>KPRCAS2025</title>
-    <link rel="stylesheet" href="./CSS/style.css">
-    <style>
-        h3{
-            font-size: xx-large;
-            color: green;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+    }
+    .container {
+      background: #7a5656;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(10, 10, 170, 0.1);
+      width: 400px;
+    }
+    .search-icon {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .entry-list {
+      margin-top: 20px;
+    }
+    .entry {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .entry span {
+      display: inline-block;
+      width: 90px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body style="background-color:paleturquoise;">
-   <h1 style="color:blue;font-size:50px;">BCA</h1>
-   <h2 style="color: rgb(128, 255, 0);font-variant: inherit;">IT</h2>
-   <h3>CT</h3> 
-   <h3>HELLO</h3>
-   <h5>HELLO</h5>
-   <h6>HELLO</h6>
-   <p class="header"><b>Lorem ipsum dolor</b> sit amet consectetur<i> adipisicing elit</i>. At, dolores facere <br> natus assumenda </br> nostrum iste<q><u> doloribus harum </u></q>umaxime accusantium omnis voluptatum reiciendis nihil deleniti? Eos eaque, corrupti harum ipsum iste ab, obcaecati facilis dolorum <mark>laboriosam delectus adipisci</mark> maxime aliquid iusto quia incidunt non(75878)<sub>10000000</sub> perferendis quisquam quae dolor neque veniam iure?</p>
-   <ol>
-    <li id="one">BCA</li>
-    <li id="two">IT</li>
-    <li id="three">CT</li>
-   </ol>
-   <ul>
-    <li id="four">IT</li>
-    <li id="five">BCA</li>
-    <li id="six">CT</li>
-   </ul>
-   <a href="https://www.wikipedia.org/">Wikipedia</a><br>
-   <a href="https://www.dictionary.com/">Dictionary</a><br>
-   <a href="home.html">Home</a><br>
+<body>
+  <div class="box-shadow">
+    <div class="search-icon"></div>
+
+    <input type="text" id="name" placeholder="Enter Name" />
+    <input type="email" id="email" placeholder="Enter Email" />
+    <select id="department">
+      <option value="">Select DEP</option>
+      <option value="BBA">BBA</option>
+      <option value="CT">CT</option>
+      <option value="BCA">BCA</option>
+      <option value="IT">IT</option>
+    </select>
+    <button onclick="addEntry()">Add</button>
+
+    <div class="entry-list" id="entryList"></div>
+  </div>
+
+  <script>
+    let slno = 1;
+
+    function addEntry() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const department = document.getElementById("department").value;
+
+      if (name === "" || email === "" || department === "") {
+        alert("Please fill all fields");
+        return;
+      }
+
+      const entryList = document.getElementById("entryList");
+
+      const entryDiv = document.createElement("div");
+      entryDiv.className = "entry";
+      entryDiv.innerHTML = `
+        <div><span>Sl. No:</span> ${slno}</div>
+        <div><span>Name:</span> ${name}</div>
+        <div><span>Email:</span> ${email}</div>
+        <div><span>Dept:</span> ${department}</div>
+      `;
+
+      entryList.appendChild(entryDiv);
+
+      slno++;
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("department").value = "";
+    }
+  </script>
 </body>
 </html>
